@@ -1,0 +1,214 @@
+# encoding: utf-8
+#
+# Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+# Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License").
+# You may not use this file except in compliance with the License.
+# A copy of the License is located at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# or in the "license" file accompanying this file. This file is distributed
+# on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+# express or implied. See the License for the specific language governing
+# permissions and limitations under the License.
+
+import json
+
+from gs2_core_client.Gs2Constant import Gs2Constant
+from gs2_core_client.AbstractGs2Client import AbstractGs2Client
+
+
+class Gs2KeyClient(AbstractGs2Client):
+
+    ENDPOINT = "key"
+
+    def __init__(self, credential, region):
+        """
+        コンストラクタ
+        :param credential: 認証情報
+        :type credential: IGs2Credential
+        :param region: GS2リージョン
+        :type region: str
+        """
+        super(Gs2KeyClient, self).__init__(credential, region)
+
+
+    def create_key(self, request):
+        """
+        暗号鍵を新規作成します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_key_client.control.CreateKeyRequest.CreateKeyRequest
+        :return: 結果
+        :rtype: gs2_key_client.control.CreateKeyResult.CreateKeyResult
+        """
+        body = { 
+            "name": request.get_name(),
+        }
+
+        headers = { 
+        }
+        from gs2_key_client.control.CreateKeyRequest import CreateKeyRequest
+
+        from gs2_key_client.control.CreateKeyResult import CreateKeyResult
+        return CreateKeyResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/key",
+            service=self.ENDPOINT,
+            module=CreateKeyRequest.Constant.MODULE,
+            function=CreateKeyRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+
+
+
+    def decrypt(self, request):
+        """
+        復号化処理を実行します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_key_client.control.DecryptRequest.DecryptRequest
+        :return: 結果
+        :rtype: gs2_key_client.control.DecryptResult.DecryptResult
+        """
+        body = { 
+            "data": request.get_data(),
+        }
+
+        headers = { 
+        }
+        from gs2_key_client.control.DecryptRequest import DecryptRequest
+
+        from gs2_key_client.control.DecryptResult import DecryptResult
+        return DecryptResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "/decrypt",
+            service=self.ENDPOINT,
+            module=DecryptRequest.Constant.MODULE,
+            function=DecryptRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+
+
+    def delete_key(self, request):
+        """
+        暗号鍵を削除します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_key_client.control.DeleteKeyRequest.DeleteKeyRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+        }
+        from gs2_key_client.control.DeleteKeyRequest import DeleteKeyRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "",
+            service=self.ENDPOINT,
+            module=DeleteKeyRequest.Constant.MODULE,
+            function=DeleteKeyRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+    def describe_key(self, request):
+        """
+        暗号鍵の一覧を取得します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_key_client.control.DescribeKeyRequest.DescribeKeyRequest
+        :return: 結果
+        :rtype: gs2_key_client.control.DescribeKeyResult.DescribeKeyResult
+        """
+
+        query_strings = {
+
+            'pageToken': request.get_page_token(),
+
+            'limit': request.get_limit(),
+
+        }
+        headers = { 
+        }
+        from gs2_key_client.control.DescribeKeyRequest import DescribeKeyRequest
+
+        from gs2_key_client.control.DescribeKeyResult import DescribeKeyResult
+        return DescribeKeyResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/key",
+            service=self.ENDPOINT,
+            module=DescribeKeyRequest.Constant.MODULE,
+            function=DescribeKeyRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+
+    def encrypt(self, request):
+        """
+        暗号化処理を実行します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_key_client.control.EncryptRequest.EncryptRequest
+        :return: 結果
+        :rtype: gs2_key_client.control.EncryptResult.EncryptResult
+        """
+        body = { 
+            "data": request.get_data(),
+        }
+
+        headers = { 
+        }
+        from gs2_key_client.control.EncryptRequest import EncryptRequest
+
+        from gs2_key_client.control.EncryptResult import EncryptResult
+        return EncryptResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "/encrypt",
+            service=self.ENDPOINT,
+            module=EncryptRequest.Constant.MODULE,
+            function=EncryptRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+
+
+    def get_key(self, request):
+        """
+        暗号鍵を取得します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_key_client.control.GetKeyRequest.GetKeyRequest
+        :return: 結果
+        :rtype: gs2_key_client.control.GetKeyResult.GetKeyResult
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+        }
+        from gs2_key_client.control.GetKeyRequest import GetKeyRequest
+
+        from gs2_key_client.control.GetKeyResult import GetKeyResult
+        return GetKeyResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "",
+            service=self.ENDPOINT,
+            module=GetKeyRequest.Constant.MODULE,
+            function=GetKeyRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
