@@ -26,8 +26,6 @@ class DescribeKeyResult(object):
         :type response: dict
         """
         
-        self.__next_page_token = unicode(response['nextPageToken']) if 'nextPageToken' in response.keys() and response['nextPageToken'] is not None else None
-        
         self.__items = list(
             map(
                 lambda data:
@@ -36,14 +34,8 @@ class DescribeKeyResult(object):
                 response['items']
             )
         )
-
-    def get_next_page_token(self):
-        """
-        次のページを読み込むためのトークンを取得
-        :return: 次のページを読み込むためのトークン
-        :rtype: unicode
-        """
-        return self.__next_page_token
+        
+        self.__next_page_token = unicode(response['nextPageToken']) if 'nextPageToken' in response.keys() and response['nextPageToken'] is not None else None
 
     def get_items(self):
         """
@@ -53,6 +45,14 @@ class DescribeKeyResult(object):
         """
         return self.__items
 
+    def get_next_page_token(self):
+        """
+        次のページを読み込むためのトークンを取得
+        :return: 次のページを読み込むためのトークン
+        :rtype: unicode
+        """
+        return self.__next_page_token
+
     def to_dict(self):
         """
         辞書配列に変換
@@ -60,8 +60,8 @@ class DescribeKeyResult(object):
         :rtype: dict
         """
         return { 
-            'nextPageToken': self.__next_page_token,
-        
             'items': map(lambda item: item.to_dict(), self.__items),
+        
+            'nextPageToken': self.__next_page_token,
         
         }

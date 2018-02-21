@@ -18,34 +18,18 @@ class Key(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__owner_id = None
             self.__key_id = None
-            self.__update_at = None
+            self.__owner_id = None
             self.__name = None
             self.__create_at = None
+            self.__update_at = None
         else:
-            self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
             self.set_key_id(params['keyId'] if 'keyId' in params.keys() else None)
-            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
+            self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
             self.set_name(params['name'] if 'name' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
+            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
-
-    def get_owner_id(self):
-        """
-        オーナーIDを取得
-        :return: オーナーID
-        :rtype: unicode
-        """
-        return self.__owner_id
-
-    def set_owner_id(self, owner_id):
-        """
-        オーナーIDを設定
-        :param owner_id: オーナーID
-        :type owner_id: unicode
-        """
-        self.__owner_id = owner_id
 
     def get_key_id(self):
         """
@@ -63,21 +47,21 @@ class Key(object):
         """
         self.__key_id = key_id
 
-    def get_update_at(self):
+    def get_owner_id(self):
         """
-        最終更新日時(エポック秒)を取得
-        :return: 最終更新日時(エポック秒)
-        :rtype: int
+        オーナーIDを取得
+        :return: オーナーID
+        :rtype: unicode
         """
-        return self.__update_at
+        return self.__owner_id
 
-    def set_update_at(self, update_at):
+    def set_owner_id(self, owner_id):
         """
-        最終更新日時(エポック秒)を設定
-        :param update_at: 最終更新日時(エポック秒)
-        :type update_at: int
+        オーナーIDを設定
+        :param owner_id: オーナーID
+        :type owner_id: unicode
         """
-        self.__update_at = update_at
+        self.__owner_id = owner_id
 
     def get_name(self):
         """
@@ -111,11 +95,27 @@ class Key(object):
         """
         self.__create_at = create_at
 
+    def get_update_at(self):
+        """
+        最終更新日時(エポック秒)を取得
+        :return: 最終更新日時(エポック秒)
+        :rtype: int
+        """
+        return self.__update_at
+
+    def set_update_at(self, update_at):
+        """
+        最終更新日時(エポック秒)を設定
+        :param update_at: 最終更新日時(エポック秒)
+        :type update_at: int
+        """
+        self.__update_at = update_at
+
     def to_dict(self):
         return { 
-            "ownerId": self.__owner_id,
             "keyId": self.__key_id,
-            "updateAt": self.__update_at,
+            "ownerId": self.__owner_id,
             "name": self.__name,
             "createAt": self.__create_at,
+            "updateAt": self.__update_at,
         }

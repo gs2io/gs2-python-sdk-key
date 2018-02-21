@@ -50,6 +50,8 @@ class Gs2KeyClient(AbstractGs2Client):
 
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.CreateKeyRequest import CreateKeyRequest
 
         from gs2_key_client.control.CreateKeyResult import CreateKeyResult
@@ -80,11 +82,13 @@ class Gs2KeyClient(AbstractGs2Client):
 
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DecryptRequest import DecryptRequest
 
         from gs2_key_client.control.DecryptResult import DecryptResult
         return DecryptResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "/decrypt",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "/decrypt",
             service=self.ENDPOINT,
             module=DecryptRequest.Constant.MODULE,
             function=DecryptRequest.Constant.FUNCTION,
@@ -108,10 +112,12 @@ class Gs2KeyClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DeleteKeyRequest import DeleteKeyRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "",
             service=self.ENDPOINT,
             module=DeleteKeyRequest.Constant.MODULE,
             function=DeleteKeyRequest.Constant.FUNCTION,
@@ -140,6 +146,8 @@ class Gs2KeyClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DescribeKeyRequest import DescribeKeyRequest
 
         from gs2_key_client.control.DescribeKeyResult import DescribeKeyResult
@@ -170,11 +178,13 @@ class Gs2KeyClient(AbstractGs2Client):
 
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.EncryptRequest import EncryptRequest
 
         from gs2_key_client.control.EncryptResult import EncryptResult
         return EncryptResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "/encrypt",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "/encrypt",
             service=self.ENDPOINT,
             module=EncryptRequest.Constant.MODULE,
             function=EncryptRequest.Constant.FUNCTION,
@@ -199,11 +209,13 @@ class Gs2KeyClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.GetKeyRequest import GetKeyRequest
 
         from gs2_key_client.control.GetKeyResult import GetKeyResult
         return GetKeyResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None else request.get_key_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "",
             service=self.ENDPOINT,
             module=GetKeyRequest.Constant.MODULE,
             function=GetKeyRequest.Constant.FUNCTION,
