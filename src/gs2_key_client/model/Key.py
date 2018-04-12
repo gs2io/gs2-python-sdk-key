@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Key(object):
 
     def __init__(self, params=None):
@@ -29,7 +30,6 @@ class Key(object):
             self.set_name(params['name'] if 'name' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
-
 
     def get_key_id(self):
         """
@@ -83,7 +83,7 @@ class Key(object):
         """
         作成日時(エポック秒)を取得
         :return: 作成日時(エポック秒)
-        :rtype: int
+        :rtype: integer
         """
         return self.__create_at
 
@@ -91,7 +91,7 @@ class Key(object):
         """
         作成日時(エポック秒)を設定
         :param create_at: 作成日時(エポック秒)
-        :type create_at: int
+        :type create_at: integer
         """
         self.__create_at = create_at
 
@@ -99,7 +99,7 @@ class Key(object):
         """
         最終更新日時(エポック秒)を取得
         :return: 最終更新日時(エポック秒)
-        :rtype: int
+        :rtype: integer
         """
         return self.__update_at
 
@@ -107,12 +107,12 @@ class Key(object):
         """
         最終更新日時(エポック秒)を設定
         :param update_at: 最終更新日時(エポック秒)
-        :type update_at: int
+        :type update_at: integer
         """
         self.__update_at = update_at
 
     def to_dict(self):
-        return { 
+        return {
             "keyId": self.__key_id,
             "ownerId": self.__owner_id,
             "name": self.__name,

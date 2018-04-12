@@ -32,9 +32,11 @@ class DescribeKeyRequest(Gs2BasicRequest):
         super(DescribeKeyRequest, self).__init__(params)
         if params is None:
             self.__page_token = None
-            self.__limit = None
         else:
             self.set_page_token(params['pageToken'] if 'pageToken' in params.keys() else None)
+        if params is None:
+            self.__limit = None
+        else:
             self.set_limit(params['limit'] if 'limit' in params.keys() else None)
 
     def get_page_token(self):
@@ -51,6 +53,8 @@ class DescribeKeyRequest(Gs2BasicRequest):
         :param page_token: データの取得を開始する位置を指定するトークン
         :type page_token: unicode
         """
+        if not isinstance(page_token, unicode):
+            raise TypeError(type(page_token))
         self.__page_token = page_token
 
     def with_page_token(self, page_token):
@@ -78,6 +82,8 @@ class DescribeKeyRequest(Gs2BasicRequest):
         :param limit: データの取得件数
         :type limit: int
         """
+        if not isinstance(limit, int):
+            raise TypeError(type(limit))
         self.__limit = limit
 
     def with_limit(self, limit):

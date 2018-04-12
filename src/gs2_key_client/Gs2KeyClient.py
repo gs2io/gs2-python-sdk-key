@@ -14,8 +14,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-import json
-
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
 
@@ -33,7 +31,6 @@ class Gs2KeyClient(AbstractGs2Client):
         :type region: str
         """
         super(Gs2KeyClient, self).__init__(credential, region)
-
 
     def create_key(self, request):
         """
@@ -53,19 +50,15 @@ class Gs2KeyClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.CreateKeyRequest import CreateKeyRequest
-
         from gs2_key_client.control.CreateKeyResult import CreateKeyResult
         return CreateKeyResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/key",
             service=self.ENDPOINT,
-            module=CreateKeyRequest.Constant.MODULE,
-            function=CreateKeyRequest.Constant.FUNCTION,
+            component=CreateKeyRequest.Constant.MODULE,
+            target_function=CreateKeyRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
-
 
     def decrypt(self, request):
         """
@@ -85,18 +78,15 @@ class Gs2KeyClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DecryptRequest import DecryptRequest
-
         from gs2_key_client.control.DecryptResult import DecryptResult
         return DecryptResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "/decrypt",
             service=self.ENDPOINT,
-            module=DecryptRequest.Constant.MODULE,
-            function=DecryptRequest.Constant.FUNCTION,
+            component=DecryptRequest.Constant.MODULE,
+            target_function=DecryptRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def delete_key(self, request):
         """
@@ -104,45 +94,33 @@ class Gs2KeyClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_key_client.control.DeleteKeyRequest.DeleteKeyRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DeleteKeyRequest import DeleteKeyRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "",
             service=self.ENDPOINT,
-            module=DeleteKeyRequest.Constant.MODULE,
-            function=DeleteKeyRequest.Constant.FUNCTION,
+            component=DeleteKeyRequest.Constant.MODULE,
+            target_function=DeleteKeyRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
 
-
-
     def describe_key(self, request):
         """
         暗号鍵の一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_key_client.control.DescribeKeyRequest.DescribeKeyRequest
         :return: 結果
         :rtype: gs2_key_client.control.DescribeKeyResult.DescribeKeyResult
         """
-
         query_strings = {
-
             'pageToken': request.get_page_token(),
-
             'limit': request.get_limit(),
-
         }
         headers = { 
         }
@@ -154,14 +132,11 @@ class Gs2KeyClient(AbstractGs2Client):
         return DescribeKeyResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/key",
             service=self.ENDPOINT,
-            module=DescribeKeyRequest.Constant.MODULE,
-            function=DescribeKeyRequest.Constant.FUNCTION,
+            component=DescribeKeyRequest.Constant.MODULE,
+            target_function=DescribeKeyRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
 
     def encrypt(self, request):
         """
@@ -181,31 +156,25 @@ class Gs2KeyClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.EncryptRequest import EncryptRequest
-
         from gs2_key_client.control.EncryptResult import EncryptResult
         return EncryptResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "/encrypt",
             service=self.ENDPOINT,
-            module=EncryptRequest.Constant.MODULE,
-            function=EncryptRequest.Constant.FUNCTION,
+            component=EncryptRequest.Constant.MODULE,
+            target_function=EncryptRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
 
-
-
     def get_key(self, request):
         """
         暗号鍵を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_key_client.control.GetKeyRequest.GetKeyRequest
         :return: 結果
         :rtype: gs2_key_client.control.GetKeyResult.GetKeyResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -217,10 +186,8 @@ class Gs2KeyClient(AbstractGs2Client):
         return GetKeyResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "",
             service=self.ENDPOINT,
-            module=GetKeyRequest.Constant.MODULE,
-            function=GetKeyRequest.Constant.FUNCTION,
+            component=GetKeyRequest.Constant.MODULE,
+            target_function=GetKeyRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-

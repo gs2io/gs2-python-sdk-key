@@ -25,7 +25,6 @@ class DecryptResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__data = unicode(response['data']) if 'data' in response.keys() and response['data'] is not None else None
 
     def get_data(self):
@@ -42,7 +41,6 @@ class DecryptResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'data': self.__data,
-        
         }
