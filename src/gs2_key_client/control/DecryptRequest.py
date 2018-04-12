@@ -53,7 +53,7 @@ class DecryptRequest(Gs2BasicRequest):
         :param key_name: 暗号鍵の名前を指定します。
         :type key_name: unicode
         """
-        if not isinstance(key_name, unicode):
+        if key_name and not isinstance(key_name, unicode):
             raise TypeError(type(key_name))
         self.__key_name = key_name
 
@@ -82,7 +82,7 @@ class DecryptRequest(Gs2BasicRequest):
         :param data: 暗号化されたデータ
         :type data: unicode
         """
-        if not isinstance(data, unicode):
+        if data and not isinstance(data, unicode):
             raise TypeError(type(data))
         self.__data = data
 
