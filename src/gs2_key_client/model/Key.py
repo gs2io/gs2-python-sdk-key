@@ -23,13 +23,11 @@ class Key(object):
             self.__owner_id = None
             self.__name = None
             self.__create_at = None
-            self.__update_at = None
         else:
             self.set_key_id(params['keyId'] if 'keyId' in params.keys() else None)
             self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
             self.set_name(params['name'] if 'name' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
-            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
     def get_key_id(self):
         """
@@ -83,7 +81,7 @@ class Key(object):
         """
         作成日時(エポック秒)を取得
         :return: 作成日時(エポック秒)
-        :rtype: integer
+        :rtype: int
         """
         return self.__create_at
 
@@ -91,25 +89,9 @@ class Key(object):
         """
         作成日時(エポック秒)を設定
         :param create_at: 作成日時(エポック秒)
-        :type create_at: integer
+        :type create_at: int
         """
         self.__create_at = create_at
-
-    def get_update_at(self):
-        """
-        最終更新日時(エポック秒)を取得
-        :return: 最終更新日時(エポック秒)
-        :rtype: integer
-        """
-        return self.__update_at
-
-    def set_update_at(self, update_at):
-        """
-        最終更新日時(エポック秒)を設定
-        :param update_at: 最終更新日時(エポック秒)
-        :type update_at: integer
-        """
-        self.__update_at = update_at
 
     def to_dict(self):
         return {
@@ -117,5 +99,4 @@ class Key(object):
             "ownerId": self.__owner_id,
             "name": self.__name,
             "createAt": self.__create_at,
-            "updateAt": self.__update_at,
         }
