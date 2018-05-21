@@ -1,1 +1,1 @@
-gs2-python-sdk-core == 1.1.5
+gs2-python-sdk-core == 1.1.6
