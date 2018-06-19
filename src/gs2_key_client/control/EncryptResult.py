@@ -26,7 +26,6 @@ class EncryptResult(object):
         :type response: dict
         """
         self.__data = unicode(response['data']) if 'data' in response.keys() and response['data'] is not None else None
-
     def get_data(self):
         """
         暗号化済みデータを取得
@@ -34,6 +33,12 @@ class EncryptResult(object):
         :rtype: unicode
         """
         return self.__data
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(EncryptResult, self).__getitem__(key)
 
     def to_dict(self):
         """
