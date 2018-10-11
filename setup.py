@@ -15,7 +15,7 @@ setup(
         "gs2_key_client.model",
     ],
     install_requires=[
-        'gs2-python-sdk-core >= 1.1.10',
+        'gs2-python-sdk-core >= 1.3.0',
     ],
     tests_require=[],
     license='Apache License 2.0',

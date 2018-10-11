@@ -46,8 +46,7 @@ class Gs2KeyClient(AbstractGs2Client):
             "name": request.get_name(),
         }
 
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.CreateKeyRequest import CreateKeyRequest
@@ -74,14 +73,13 @@ class Gs2KeyClient(AbstractGs2Client):
             "data": request.get_data(),
         }
 
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DecryptRequest import DecryptRequest
         from gs2_key_client.control.DecryptResult import DecryptResult
         return DecryptResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else url_encoder.encode(request.get_key_name()))) + "/decrypt",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "/decrypt",
             service=self.ENDPOINT,
             component=DecryptRequest.Constant.MODULE,
             target_function=DecryptRequest.Constant.FUNCTION,
@@ -97,13 +95,12 @@ class Gs2KeyClient(AbstractGs2Client):
         :type request: gs2_key_client.control.DeleteKeyRequest.DeleteKeyRequest
         """
         query_strings = {}
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DeleteKeyRequest import DeleteKeyRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else url_encoder.encode(request.get_key_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "",
             service=self.ENDPOINT,
             component=DeleteKeyRequest.Constant.MODULE,
             target_function=DeleteKeyRequest.Constant.FUNCTION,
@@ -119,12 +116,12 @@ class Gs2KeyClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_key_client.control.DescribeKeyResult.DescribeKeyResult
         """
-        query_strings = {
-            'pageToken': request.get_page_token(),
-            'limit': request.get_limit(),
-        }
-        headers = { 
-        }
+        query_strings = {}
+        if request.get_page_token() is not None:
+            query_strings['pageToken'] = request.get_page_token()
+        if request.get_limit() is not None:
+            query_strings['limit'] = request.get_limit()
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.DescribeKeyRequest import DescribeKeyRequest
@@ -152,14 +149,13 @@ class Gs2KeyClient(AbstractGs2Client):
             "data": request.get_data(),
         }
 
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.EncryptRequest import EncryptRequest
         from gs2_key_client.control.EncryptResult import EncryptResult
         return EncryptResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else url_encoder.encode(request.get_key_name()))) + "/encrypt",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "/encrypt",
             service=self.ENDPOINT,
             component=EncryptRequest.Constant.MODULE,
             target_function=EncryptRequest.Constant.FUNCTION,
@@ -175,17 +171,15 @@ class Gs2KeyClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_key_client.control.GetKeyResult.GetKeyResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_key_client.control.GetKeyRequest import GetKeyRequest
 
         from gs2_key_client.control.GetKeyResult import GetKeyResult
         return GetKeyResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else url_encoder.encode(request.get_key_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/key/" + str(("null" if request.get_key_name() is None or request.get_key_name() == "" else request.get_key_name())) + "",
             service=self.ENDPOINT,
             component=GetKeyRequest.Constant.MODULE,
             target_function=GetKeyRequest.Constant.FUNCTION,

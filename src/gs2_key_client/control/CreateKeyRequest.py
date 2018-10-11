@@ -49,7 +49,7 @@ class CreateKeyRequest(Gs2BasicRequest):
         :param name: 暗号鍵の名前
         :type name: unicode
         """
-        if name and not (isinstance(name, str) or isinstance(name, unicode)):
+        if name is not None and not (isinstance(name, str) or isinstance(name, unicode)):
             raise TypeError(type(name))
         self.__name = name
 

@@ -49,7 +49,7 @@ class DeleteKeyRequest(Gs2BasicRequest):
         :param key_name: 暗号鍵の名前を指定します。
         :type key_name: unicode
         """
-        if key_name and not (isinstance(key_name, str) or isinstance(key_name, unicode)):
+        if key_name is not None and not (isinstance(key_name, str) or isinstance(key_name, unicode)):
             raise TypeError(type(key_name))
         self.__key_name = key_name
 
